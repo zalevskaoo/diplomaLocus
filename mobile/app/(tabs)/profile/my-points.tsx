@@ -46,7 +46,7 @@ function getCategoryEmoji(category: string) {
     case 'accessibility':
       return '♿';
 
-    case 'bike_lane':
+    case 'bike_line':
       return '🚲';
 
     case 'aid':

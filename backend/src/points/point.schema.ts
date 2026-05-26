@@ -12,7 +12,7 @@ export class Point {
     required: true,
     enum: [
       'accessibility',
-      'bike_lane',
+      'bike_line',
       'aid',
       'recycling',
       'sorting',

@@ -7,9 +7,9 @@ export const POINT_CATEGORIES = [
   },
   {
     label: 'Велодоріжки',
-    value: 'bike',
+    value: 'bike_lane',
     icon: '🚲',
-    color: '#233449',
+    color: '#000000',
   },
   {
     label: 'Допомога',

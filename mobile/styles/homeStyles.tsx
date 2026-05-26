@@ -14,13 +14,6 @@ export const styles = StyleSheet.create({
     backgroundColor: LOCUS_COLORS.background,
   },
 
-  logo: {
-    width: 150,
-    height: 150,
-    resizeMode: 'contain',
-    marginBottom: 14,
-  },
-
   badge: {
     alignSelf: 'flex-start',
     backgroundColor: LOCUS_COLORS.surface,
@@ -35,13 +28,6 @@ export const styles = StyleSheet.create({
     borderColor: LOCUS_COLORS.border,
   },
 
-  appTitle: {
-    fontSize: 48,
-    fontWeight: '900',
-    letterSpacing: 4,
-    color: LOCUS_COLORS.primary,
-    marginBottom: 10,
-  },
 
   title: {
     fontSize: 30,
@@ -113,4 +99,23 @@ export const styles = StyleSheet.create({
     color: LOCUS_COLORS.primary,
     fontWeight: '800',
   },
+  heroRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 18,
+  marginBottom: 18,
+},
+
+logo: {
+  width: 190,
+  height: 190,
+  resizeMode: 'contain',
+},
+
+appTitle: {
+  fontSize: 56,
+  fontWeight: '900',
+  letterSpacing: 4,
+  color: LOCUS_COLORS.brown,
+},
 });

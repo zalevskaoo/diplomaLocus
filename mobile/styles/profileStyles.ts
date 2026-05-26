@@ -92,6 +92,7 @@ export const profileStyles = StyleSheet.create({
     color: LOCUS_COLORS.textLight,
     fontWeight: '800',
     fontSize: 15,
+    
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -282,8 +283,43 @@ removeImageButtonText: {
   fontSize: 12,
 },
 defaultAvatarImage: {
+  width: 90,
+  height: 90,
+  resizeMode: 'contain',
+},
+defaultReviewAvatarImage: {
   width: 24,
   height: 24,
   resizeMode: 'contain',
+},
+
+errorPage: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: 24,
+  backgroundColor: LOCUS_COLORS.background,
+},
+
+errorLogo: {
+  width: 190,
+  height: 190,
+  resizeMode: 'contain',
+  marginBottom: 20,
+},
+
+errorTitle: {
+  fontSize: 26,
+  fontWeight: '900',
+  color: LOCUS_COLORS.primary,
+  textAlign: 'center',
+  marginBottom: 10,
+},
+
+errorSubtitle: {
+  fontSize: 16,
+  color: LOCUS_COLORS.brown,
+  textAlign: 'center',
+  marginBottom: 22,
 },
 });

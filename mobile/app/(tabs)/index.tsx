@@ -1,31 +1,55 @@
 import { router } from 'expo-router';
-import { Pressable, Text, View } from 'react-native';
-import { styles } from '../../styles/homeStyles';
+import { Image, Linking, Pressable, Text, View } from 'react-native';
+
+import { styles } from '@/styles/homeStyles';
+
+const FEEDBACK_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdU4IfAVcDsZ-re8R-0CI6XwGJOjYDRKwgfT1l1UlGyl5kn0Q/viewform?usp=publish-editor';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.badge}>Kyiv Access</Text>
+      <View style={styles.heroRow}>
+        <Image
+        source={require('@/assets/images/locus-logo.png')}
+        style={styles.logo}
+        />
+        <Text style={styles.appTitle}>LOCUS</Text>
+        </View>
 
       <Text style={styles.title}>
-        Платформа доступу до міської інфраструктури Києва
+        Інтерактивна платформа доступності та міських сервісів Києва
       </Text>
 
       <Text style={styles.subtitle}>
-        Переглядайте соціально важливі об’єкти міста, фільтруйте їх за категоріями
-        та додавайте нову інформацію.
+        LOCUS допомагає швидко знаходити важливі міські об’єкти: укриття,
+        пункти незламності, місця сортування, переробки, гуманітарної допомоги,
+        доступні локації та велосипедну інфраструктуру.
       </Text>
 
-      <Pressable style={styles.button} onPress={() => router.push('/map')}>
-        <Text style={styles.buttonText}>Перейти до мапи</Text>
+      <Text style={styles.subtitle}>
+        Користувачі можуть додавати нові точки, фото, відгуки та переглядати
+        інформацію на мапі після модерації.
+      </Text>
+
+      <Pressable style={styles.button} onPress={() => router.push('/map' as any)}>
+        <Text style={styles.buttonText}>Перейти на мапу</Text>
       </Pressable>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Категорії</Text>
-        <Text style={styles.categoryText}>♿ Доступні місця</Text>
-        <Text style={styles.categoryText}>🚲 Велодоріжки</Text>
-        <Text style={styles.categoryText}>🤝 Гуманітарна допомога</Text>
-        <Text style={styles.categoryText}>♻️ Переробка та сортування</Text>
+        <Text style={styles.cardTitle}>Допоможіть покращити LOCUS</Text>
+
+        <Text style={styles.categoryText}>
+          Залиште короткий відгук про застосунок — це допоможе покращити
+          функціонал і зручність користування.
+        </Text>
+
+        <Pressable
+          style={styles.feedbackButton}
+          onPress={() => Linking.openURL(FEEDBACK_URL)}
+        >
+          <Text style={styles.feedbackButtonText}>Залишити відгук</Text>
+        </Pressable>
       </View>
     </View>
   );

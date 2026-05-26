@@ -81,7 +81,7 @@ export default function SavedUsersScreen() {
               ) : (
                 <View style={styles.emptyAvatar}>
                   <Image
-                  source={require('@/assets/images/locus-avatar.png')}
+                  source={require('@/assets/images/locus_av.jpg')}
                   style={styles.avatar}
                   />
                 </View>

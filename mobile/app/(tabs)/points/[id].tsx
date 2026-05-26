@@ -187,8 +187,8 @@ export default function PointDetailsScreen() {
             ) : (
               <View style={styles.reviewEmptyAvatar}>
   <Image
-    source={require('@/assets/images/locus-av.jpg')}
-    style={styles.defaultAvatarImage}
+    source={require('@/assets/images/locus_av.jpg')}
+    style={styles.defaultReviewAvatarImage}
   />
 </View>
             )}
@@ -245,8 +245,8 @@ export default function PointDetailsScreen() {
                   ) : (
                     <View style={styles.reviewEmptyAvatar}>
   <Image
-    source={require('@/assets/images/locus-av.jpg')}
-    style={styles.defaultAvatarImage}
+    source={require('@/assets/images/locus_av.jpg')}
+    style={styles.defaultReviewAvatarImage}
   />
 </View>
                   )}

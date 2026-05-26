@@ -65,8 +65,8 @@ export const styles = StyleSheet.create({
   },
 
   logoImage: {
-    width: 118,
-    height: 118,
+    width: 140,
+    height: 140,
     resizeMode: 'contain',
     marginBottom: 10,
   },

@@ -26,7 +26,7 @@ export class AuthService {
     );
 
     if (existingUser) {
-      throw new BadRequestException('Email already exists');
+      throw new BadRequestException('Упсі! Такий еmail вже існує, спробуйте відновити пароль');
     }
 
     const verificationToken = randomBytes(32).toString('hex');
@@ -45,7 +45,7 @@ export class AuthService {
 
     return {
       message:
-        'Акаунт створено. Перевірте пошту та підтвердіть email перед входом.',
+        'Акаунт створено! Перевірте пошту та підтвердіть email перед входом.',
     };
   }
 
@@ -76,11 +76,11 @@ export class AuthService {
     const user = await this.usersService.findByEmail(email);
 
     if (!user) {
-      throw new BadRequestException('Користувача з таким email не знайдено');
+      throw new BadRequestException('Упсі! Користувача з таким email не знайдено :( Спробуйте інший або реєструйтесь');
     }
 
     if (user.isEmailVerified) {
-      throw new BadRequestException('Email вже підтверджено');
+      throw new BadRequestException('Email вже підтверджено, донт ворі');
     }
 
     const verificationToken = randomBytes(32).toString('hex');
@@ -96,7 +96,7 @@ export class AuthService {
     );
 
     return {
-      message: 'Лист підтвердження надіслано повторно',
+      message: 'на твою пошту прийшло повідомлення, подивись, може там щось важливе.. 2х',
     };
   }
 
@@ -147,7 +147,7 @@ export class AuthService {
     await this.usersService.resetPassword(user._id.toString(), newPassword);
 
     return {
-      message: 'Пароль успішно змінено',
+      message: 'Пароль готовий!',
     };
   }
 
@@ -155,7 +155,7 @@ export class AuthService {
     const user = await this.usersService.findByEmail(loginDto.email);
 
     if (!user) {
-      throw new UnauthorizedException('Invalid email or password');
+      throw new UnauthorizedException('Шось напутав.. пароль чи email?');
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -164,11 +164,11 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid email or password');
+      throw new UnauthorizedException('Шось напутав.. пароль чи email?');
     }
 
     if (!user.isEmailVerified) {
-      throw new UnauthorizedException('Please verify your email first');
+      throw new UnauthorizedException('на твою пошту прийшло повідомлення, подивись, може там щось важливе..');
     }
 
     const payload = {
@@ -197,7 +197,7 @@ export class AuthService {
     return `
       <html>
         <head>
-          <title>Email підтверджено</title>
+          <title>Email готовенький!</title>
           <style>
             body {
               margin: 0;
@@ -264,11 +264,11 @@ export class AuthService {
             <div class="brand">LOCUS</div>
             <div class="tag">міська інфраструктура поруч</div>
 
-            <h1>Пошту підтверджено</h1>
+            <h1>Пошта готова!</h1>
 
             <p>
-              Супер! Ваш акаунт LOCUS активовано.
-              Тепер ви можете увійти в застосунок і користуватися всіма можливостями.
+              Юху! Ваш акаунт LOCUS почав свою закону діяльність
+              Тепер ви можете увійти в застосунок і насолоджитись хоча б цим в цьому житті
             </p>
 
             <a href="http://localhost:8090/profile">

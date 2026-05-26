@@ -53,10 +53,10 @@ export default function AppMap({ points, userLocation }: AppMapProps) {
             coord.longitude,
           ]) as [number, number][];
 
-          L.polyline(line, {
-            color: getCategoryColor(point.category),
-            weight: 4,
-          })
+                    L.polyline(line, {
+                      color: '#000000',
+                      weight: 2,
+                    })
             .addTo(map!)
             .bindPopup(
               `<b>${getCategoryLabel(point.category)}: ${point.title}</b>`
@@ -79,12 +79,56 @@ export default function AppMap({ points, userLocation }: AppMapProps) {
           fillOpacity: 0.9,
           weight: 2,
         })
+        
         .addTo(map!)
-        .bindPopup(
-          `<b>${getCategoryLabel(point.category)}: ${point.title}</b><br/>
-          ${point.address ?? ''}<br/>
-          <a href="/points/${point._id ?? point.id}">Детальніше</a>`,
-        );
+        .bindPopup(`
+  <div style="
+    min-width: 180px;
+    font-family: Arial, sans-serif;
+    color: #233449;
+  ">
+    <div style="
+      font-size: 13px;
+      font-weight: 800;
+      color: #855B52;
+      margin-bottom: 4px;
+    ">
+      ${getCategoryLabel(point.category)}
+    </div>
+
+    <div style="
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    ">
+      ${point.title}
+    </div>
+
+    <div style="
+      font-size: 13px;
+      color: #636563;
+      margin-bottom: 10px;
+    ">
+      ${point.address ?? ''}
+    </div>
+
+    <a
+      href="/points/${point._id ?? point.id}"
+      style="
+        display: inline-block;
+        background: #233449;
+        color: #E8E5DA;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 800;
+      "
+    >
+      Детальніше
+    </a>
+  </div>
+`);
       });
 
       if (userLocation) {

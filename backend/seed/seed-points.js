@@ -7,11 +7,25 @@ const MONGO_URI = 'mongodb://localhost:27017/kyiv-access';
 const PointSchema = new mongoose.Schema(
   {
     title: String,
+    type: {
+      type: String,
+      default: 'point',
+    },
     category: String,
     address: String,
     description: String,
     latitude: Number,
     longitude: Number,
+    path: [
+      {
+        latitude: Number,
+        longitude: Number,
+      },
+    ],
+    status: {
+      type: String,
+      default: 'approved',
+    },
     createdBy: String,
     imageUrls: {
       type: [String],
@@ -21,7 +35,7 @@ const PointSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Point = mongoose.model('Point', PointSchema);
+const Point = mongoose.model('Point', PointSchema, 'points');
 
 async function seedPoints() {
   await mongoose.connect(MONGO_URI);
@@ -29,9 +43,15 @@ async function seedPoints() {
   const filePath = path.join(__dirname, 'points.json');
   const points = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
-  await Point.insertMany(points);
+  const normalizedPoints = points.map((point) => ({
+    ...point,
+    status: point.status ?? 'approved',
+    imageUrls: point.imageUrls ?? [],
+  }));
 
-  console.log(`Inserted ${points.length} points`);
+  await Point.insertMany(normalizedPoints);
+
+  console.log(`Inserted ${normalizedPoints.length} points`);
 
   await mongoose.disconnect();
 }
