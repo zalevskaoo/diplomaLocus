@@ -4,28 +4,46 @@
  */
 
 import { Platform } from 'react-native';
+export const LOCUS_COLORS = {
+  darkBlue: '#233449',
+  blueGray: '#A9BBBD',
+  beige: '#E1CCAD',
+  cream: '#E8E5DA',
+  brown: '#855B52',
+  rose: '#9D6F86',
+  gray: '#636563',
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
+  background: '#E8E5DA',
+  surface: '#F5F0E6',
+  primary: '#233449',
+  secondary: '#855B52',
+  accent: '#9D6F86',
+  muted: '#A9BBBD',
+  text: '#233449',
+  textLight: '#E8E5DA',
+  border: '#CDBFAF',
+  danger: '#855B52',
+  success: '#A9BBBD',
 };
+
+export const LOCUS_RADIUS = {
+  sm: 12,
+  md: 16,
+  lg: 24,
+  xl: 32,
+};
+
+export const LOCUS_SHADOW = {
+  shadowColor: '#233449',
+  shadowOffset: {
+    width: 0,
+    height: 6,
+  },
+  shadowOpacity: 0.12,
+  shadowRadius: 14,
+  elevation: 4,
+};
+
 
 export const Fonts = Platform.select({
   ios: {

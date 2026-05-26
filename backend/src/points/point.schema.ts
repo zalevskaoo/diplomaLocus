@@ -8,8 +8,47 @@ export class Point {
   @Prop({ required: true })
   title!: string;
 
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    enum: [
+      'accessibility',
+      'bike_lane',
+      'aid',
+      'recycling',
+      'sorting',
+      'shelter',
+      'invincibility',
+    ],
+  })
   category!: string;
+
+  @Prop({
+    required: true,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending',
+  })
+  status!: string;
+
+  @Prop({
+    required: true,
+    enum: ['point', 'path'],
+    default: 'point',
+  })
+  type!: string;
+
+  @Prop({
+    type: [
+      {
+        latitude: Number,
+        longitude: Number,
+      },
+    ],
+    default: [],
+  })
+  path!: {
+    latitude: number;
+    longitude: number;
+  }[];
 
   @Prop({ required: true })
   address!: string;
@@ -25,6 +64,11 @@ export class Point {
 
   @Prop()
   createdBy?: string;
+
+  @Prop({ type: [String], default: [] })
+  imageUrls!: string[];
+
+
 }
 
 export const PointSchema = SchemaFactory.createForClass(Point);
