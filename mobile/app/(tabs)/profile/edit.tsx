@@ -14,7 +14,7 @@ import {
 
 import { useAuth } from '@/context/AuthContext';
 
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '@/constants/api';
 
 export default function EditProfileScreen() {
   const { token, user, loginUser } = useAuth();
@@ -126,7 +126,7 @@ export default function EditProfileScreen() {
 
       loginUser(token, updatedUser);
       Alert.alert('Успіх', 'Профіль оновлено');
-      router.push('/profile' as any);
+      router.push('/(tabs)/profile' as any);
     } catch {
       Alert.alert('Помилка', 'Не вдалося зберегти профіль');
     }
@@ -143,7 +143,7 @@ export default function EditProfileScreen() {
 
         <Pressable
           style={styles.button}
-          onPress={() => router.push('/profile' as any)}
+          onPress={() => router.push('/(tabs)/profile' as any)}
         >
           <Text style={styles.buttonText}>Перейти до входу</Text>
         </Pressable>
@@ -197,7 +197,7 @@ export default function EditProfileScreen() {
 
       <Pressable
         style={styles.backButton}
-        onPress={() => router.push('/profile' as any)}
+        onPress={() => router.push('/(tabs)/profile' as any)}
       >
         <Text style={styles.backButtonText}>Назад до профілю</Text>
       </Pressable>

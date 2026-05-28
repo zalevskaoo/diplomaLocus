@@ -8,11 +8,9 @@ import {
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 26,
-    justifyContent: 'center',
-    backgroundColor: LOCUS_COLORS.background,
-  },
+  flex: 1,
+  backgroundColor: LOCUS_COLORS.background,
+},
 
   badge: {
     alignSelf: 'flex-start',
@@ -99,23 +97,29 @@ export const styles = StyleSheet.create({
     color: LOCUS_COLORS.primary,
     fontWeight: '800',
   },
-  heroRow: {
+heroRow: {
   flexDirection: 'row',
   alignItems: 'center',
-  gap: 18,
-  marginBottom: 18,
+  gap: 12,
+  marginBottom: 22,
 },
 
 logo: {
-  width: 190,
-  height: 190,
+  width: 135,
+  height: 135,
   resizeMode: 'contain',
 },
 
 appTitle: {
-  fontSize: 56,
+  fontSize: 42,
   fontWeight: '900',
-  letterSpacing: 4,
+  letterSpacing: 3,
   color: LOCUS_COLORS.brown,
+},
+scrollContent: {
+  padding: 26,
+  paddingTop: 54,
+  paddingBottom: 120,
+  justifyContent: 'center',
 },
 });

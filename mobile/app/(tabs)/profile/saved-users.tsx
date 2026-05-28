@@ -100,7 +100,7 @@ export default function SavedUsersScreen() {
 
       <Pressable
         style={styles.backButton}
-        onPress={() => router.push('/profile' as any)}
+        onPress={() => router.push('/(tabs)/profile' as any)}
       >
         <Text style={styles.backButtonText}>Назад до профілю</Text>
       </Pressable>

@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 
 import { profileStyles as styles } from '@/styles/profileStyles';
-
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '@/constants/api';
 
 export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState('');
@@ -50,7 +49,7 @@ export default function ForgotPasswordScreen() {
         'Якщо акаунт з таким email існує, ми надіслали інструкцію для відновлення пароля.',
       );
 
-      router.push('/profile' as any);
+      router.push('/(tabs)/profile' as any);
     } catch (error) {
       console.log(error);
       Alert.alert('Помилка', 'Не вдалося підключитися до сервера');
@@ -88,7 +87,7 @@ export default function ForgotPasswordScreen() {
 
       <Pressable
         style={styles.backButton}
-        onPress={() => router.push('/profile' as any)}
+        onPress={() => router.push('/(tabs)/profile' as any)}
       >
         <Text style={styles.backButtonText}>Назад до входу</Text>
       </Pressable>

@@ -268,7 +268,7 @@ export default function MapScreen() {
       ) : filteredPoints.length === 0 ? (
         <Text style={styles.cardText}>Об’єктів у цій категорії поки немає</Text>
       ) : (
-        filteredPoints.map((point) => {
+        filteredPoints.slice(0, 40).map((point) => {
           const id = point._id ?? point.id ?? '';
 
           return (

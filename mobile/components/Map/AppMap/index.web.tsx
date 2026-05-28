@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { getCategoryColor, getCategoryLabel } from '@/constants/categories';
 
-import type { AppMapProps } from './index';
+import type { AppMapProps } from './index.native';
 
 const LEAFLET_CSS_HREF = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
 const LEAFLET_CSS_ID = 'leaflet-css';

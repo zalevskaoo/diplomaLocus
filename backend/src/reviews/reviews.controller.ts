@@ -55,7 +55,7 @@ export class ReviewsController {
     const imageUrls =
       files?.map(
         (file) =>
-          `http://localhost:3000/uploads/reviews/${file.filename}`,
+          `http://192.168.0.102:3000/uploads/reviews/${file.filename}`,
       ) ?? [];
 
     return this.reviewsService.create(

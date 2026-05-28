@@ -16,8 +16,7 @@ import { POINT_CATEGORIES } from '@/constants/categories';
 import { useAuth } from '@/context/AuthContext';
 import { profileStyles as styles } from '@/styles/profileStyles';
 import { getPoints, uploadPointImage } from '../../../../services/api';
-
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '@/constants/api';
 
 type Point = {
   _id: string;

@@ -10,8 +10,6 @@ import {
 
 import { profileStyles as styles } from '@/styles/profileStyles';
 
-const API_URL = 'http://localhost:3000';
-
 export default function ResetPasswordScreen() {
   const { token } = useLocalSearchParams<{ token: string }>();
 
@@ -36,7 +34,7 @@ export default function ResetPasswordScreen() {
       setLoading(true);
 
       const response = await fetch(
-        `${API_URL}/auth/reset-password`,
+        `http://192.168.0.102/auth/reset-password`,
         {
           method: 'POST',
           headers: {
@@ -65,7 +63,7 @@ export default function ResetPasswordScreen() {
         [
           {
             text: 'Увійти',
-            onPress: () => router.push('/profile' as any),
+            onPress: () => router.push('/(tabs)/profile' as any),
           },
         ],
       );

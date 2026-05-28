@@ -62,7 +62,7 @@ export class Point {
   @Prop({ required: true })
   longitude!: number;
 
-  @Prop()
+  @Prop({ ref: 'User' })
   createdBy?: string;
 
   @Prop({ type: [String], default: [] })

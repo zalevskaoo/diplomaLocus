@@ -13,8 +13,7 @@ import { getCategoryEmoji } from '@/constants/categories';
 import { useAuth } from '@/context/AuthContext';
 import { profileStyles as styles } from '@/styles/profileStyles';
 import { getPoints, toggleSavedUser } from '@/services/api';
-
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '@/constants/api';
 
 type PublicUser = {
   _id?: string;
@@ -157,7 +156,7 @@ export default function PublicUserProfileScreen() {
 
       <Pressable
         style={styles.backButton}
-        onPress={() => router.push('/map' as any)}
+        onPress={() => router.push('/(tabs)/map' as any)}
       >
         <Text style={styles.backButtonText}>Назад до мапи</Text>
       </Pressable>

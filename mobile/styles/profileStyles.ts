@@ -36,8 +36,8 @@ export const profileStyles = StyleSheet.create({
     backgroundColor: LOCUS_COLORS.surface,
   },
   emptyAvatar: {
-    width: 128,
-    height: 128,
+    width: 165,
+    height: 165,
     borderRadius: 999,
     backgroundColor: LOCUS_COLORS.muted,
     justifyContent: 'center',
@@ -283,8 +283,8 @@ removeImageButtonText: {
   fontSize: 12,
 },
 defaultAvatarImage: {
-  width: 90,
-  height: 90,
+  width: 130,
+  height: 130,
   resizeMode: 'contain',
 },
 defaultReviewAvatarImage: {

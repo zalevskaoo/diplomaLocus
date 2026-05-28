@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:3000';
-
+import { API_URL } from '@/constants/api';
+import { Platform } from 'react-native';
 
 export async function login(email: string, password: string) {
   const response = await fetch(`${API_URL}/auth/login`, {
@@ -24,7 +24,7 @@ export async function toggleSavedPoint(
   pointId: string,
 ) {
   const response = await fetch(
-    `http://localhost:3000/users/me/saved-points/${pointId}`,
+    `http://192.168.0.102:3000/users/me/saved-points/${pointId}`,
     {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ export async function toggleSavedPoint(
 
 export async function getSavedPointIds(token: string) {
   const response = await fetch(
-    'http://localhost:3000/users/me/saved-points',
+    '`${API_URL}/users/me/saved-points',
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -120,7 +120,9 @@ export async function register(
 }
 
 export async function getPoints() {
-  const response = await fetch(`${API_URL}/points`);
+  const mode = Platform.OS === 'web' ? 'full' : 'mobile';
+
+  const response = await fetch(`${API_URL}/points?mode=${mode}`);
 
   return response.json();
 }
@@ -202,7 +204,7 @@ export async function uploadPointImage(
   formData.append('image', imageFile);
 
   const response = await fetch(
-    `http://localhost:3000/points/${pointId}/images`,
+    `${API_URL}/points/${pointId}/images`,
     {
       method: 'POST',
       headers: {
@@ -220,7 +222,7 @@ export async function toggleSavedUser(
   userId: string,
 ) {
   const response = await fetch(
-    `http://localhost:3000/users/me/saved-users/${userId}`,
+    `${API_URL}/users/me/saved-users/${userId}`,
     {
       method: 'POST',
       headers: {
@@ -234,7 +236,7 @@ export async function toggleSavedUser(
 
 export async function getSavedUsers(token: string) {
   const response = await fetch(
-    'http://localhost:3000/users/me/saved-users',
+    '`${API_URL}/users/me/saved-users',
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -246,7 +248,7 @@ export async function getSavedUsers(token: string) {
 }
 export async function getReviews(pointId: string) {
   const response = await fetch(
-    `http://localhost:3000/points/${pointId}/reviews`,
+    `${API_URL}/points/${pointId}/reviews`,
   );
 
   return response.json();
@@ -275,7 +277,7 @@ export async function createReview(
   }
 
   const response = await fetch(
-    `http://localhost:3000/points/${pointId}/reviews`,
+    `${API_URL}/points/${pointId}/reviews`,
     {
       method: 'POST',
       headers: {

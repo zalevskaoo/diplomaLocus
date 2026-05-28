@@ -183,9 +183,9 @@ export default function AddPointScreen() {
 
       {addressResults.length > 0 ? (
         <View style={styles.addressDropdown}>
-          {addressResults.map((item) => (
+          {addressResults.map((item, index) => (
             <Pressable
-              key={item.label}
+              key={`${item.label}-${index}`}
               style={styles.addressItem}
               onPress={() => selectAddress(item)}
             >

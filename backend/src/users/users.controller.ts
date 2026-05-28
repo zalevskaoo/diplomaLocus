@@ -64,7 +64,7 @@ export class UsersController {
       throw new BadRequestException('Avatar file is required');
     }
 
-    const avatarUrl = `http://localhost:3000/uploads/avatars/${file.filename}`;
+    const avatarUrl = `http://192.168.0.102:3000/uploads/avatars/${file.filename}`;
 
     return this.usersService.updateProfile(request.user.sub, {
       avatarUrl,

@@ -18,7 +18,7 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { router } from 'expo-router';
 
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '@/constants/api';
 
 type Point = {
   _id: string;

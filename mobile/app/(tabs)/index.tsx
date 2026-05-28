@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Image, Linking, Pressable, Text, View } from 'react-native';
+import { Image, Linking, Pressable, ScrollView, Text, View } from 'react-native';
 
 import { styles } from '@/styles/homeStyles';
 
@@ -8,7 +8,11 @@ const FEEDBACK_URL =
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <ScrollView
+  style={styles.container}
+  contentContainerStyle={styles.scrollContent}
+  showsVerticalScrollIndicator
+>
       <View style={styles.heroRow}>
         <Image
         source={require('@/assets/images/locus-logo.png')}
@@ -32,7 +36,7 @@ export default function HomeScreen() {
         інформацію на мапі після модерації.
       </Text>
 
-      <Pressable style={styles.button} onPress={() => router.push('/map' as any)}>
+      <Pressable style={styles.button} onPress={() => router.push('/(tabs)/map' as any)}>
         <Text style={styles.buttonText}>Перейти на мапу</Text>
       </Pressable>
 
@@ -51,6 +55,6 @@ export default function HomeScreen() {
           <Text style={styles.feedbackButtonText}>Залишити відгук</Text>
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
   );
 }

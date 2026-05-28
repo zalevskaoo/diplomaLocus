@@ -30,42 +30,103 @@ export class PointsService {
     });
   }
 
-  async findAll() {
+  async findAll(mode?: string) {
+    if (mode === 'mobile') {
+      return this.findMobilePoints();
+    }
+
+    return this.findFullPoints();
+  }
+
+  private async findFullPoints() {
     const points = await this.pointModel
       .find({ status: 'approved' })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .populate('createdBy', 'name email avatarUrl bio');
 
-    const result = await Promise.all(
-      points.map(async (point) => {
-        const objectPoint = point.toObject();
+    return points.map((point: any) => {
+      const objectPoint = point.toObject();
 
-        if (!objectPoint.createdBy) {
-          return {
-            ...objectPoint,
-            author: null,
-          };
-        }
+      return {
+        ...objectPoint,
+        author: objectPoint.createdBy
+          ? {
+              id: objectPoint.createdBy._id,
+              name: objectPoint.createdBy.name,
+              email: objectPoint.createdBy.email,
+              avatarUrl: objectPoint.createdBy.avatarUrl,
+              bio: objectPoint.createdBy.bio,
+            }
+          : null,
+        createdBy: objectPoint.createdBy?._id ?? objectPoint.createdBy,
+      };
+    });
+  }
 
-        const author = await this.userModel
-          .findById(objectPoint.createdBy)
-          .select('name email avatarUrl bio');
+  private async findMobilePoints() {
+    const categories = [
+      'accessibility',
+      'aid',
+      'recycling',
+      'sorting',
+      'shelter',
+      'invincibility',
+    ];
 
-        return {
-          ...objectPoint,
-          author: author
-            ? {
-                id: author._id,
-                name: author.name,
-                email: author.email,
-                avatarUrl: author.avatarUrl,
-                bio: author.bio,
-              }
-            : null,
-        };
-      }),
+    const regularGroups = await Promise.all(
+      categories.map((category) =>
+        this.pointModel.aggregate([
+          {
+            $match: {
+              status: 'approved',
+              category,
+              type: { $ne: 'path' },
+            },
+          },
+          {
+            $sample: {
+              size: 20,
+            },
+          },
+        ]),
+      ),
     );
 
-    return result;
+    const bikeLanes = await this.pointModel.aggregate([
+      {
+        $match: {
+          status: 'approved',
+          category: 'bike_lane',
+          type: 'path',
+        },
+      },
+      {
+        $sample: {
+          size: 20,
+        },
+      },
+    ]);
+
+    const rawPoints = [...regularGroups.flat(), ...bikeLanes];
+
+    const points = await this.pointModel.populate(rawPoints, {
+      path: 'createdBy',
+      select: 'name email avatarUrl bio',
+    });
+
+    return points.map((point: any) => ({
+      ...point,
+      author: point.createdBy
+        ? {
+            id: point.createdBy._id,
+            name: point.createdBy.name,
+            email: point.createdBy.email,
+            avatarUrl: point.createdBy.avatarUrl,
+            bio: point.createdBy.bio,
+          }
+        : null,
+      createdBy: point.createdBy?._id ?? point.createdBy,
+    }));
   }
 
   async update(id: string, updatePointDto: UpdatePointDto, userId: string) {
@@ -125,47 +186,44 @@ export class PointsService {
   }
 
   async removeImage(pointId: string, userId: string, imageUrl: string) {
-  if (!imageUrl) {
-    throw new BadRequestException('Image URL is required');
+    if (!imageUrl) {
+      throw new BadRequestException('Image URL is required');
+    }
+
+    const point = await this.pointModel.findById(pointId);
+
+    if (!point) {
+      throw new NotFoundException('Point not found');
+    }
+
+    if (point.createdBy !== userId) {
+      throw new ForbiddenException('Access denied');
+    }
+
+    return this.pointModel.findByIdAndUpdate(
+      pointId,
+      { $pull: { imageUrls: imageUrl } },
+      { returnDocument: 'after' },
+    );
   }
-
-  const point = await this.pointModel.findById(pointId);
-
-  if (!point) {
-    throw new NotFoundException('Point not found');
-  }
-
-  if (point.createdBy !== userId) {
-    throw new ForbiddenException('Access denied');
-  }
-
-  return this.pointModel.findByIdAndUpdate(
-    pointId,
-    { $pull: { imageUrls: imageUrl } },
-    { returnDocument: 'after' },
-  );
-}
 
   async findPending() {
-  return this.pointModel
-    .find({ status: 'pending' })
-    .sort({ createdAt: -1 });
-}
-
-async changeStatus(
-  pointId: string,
-  status: 'approved' | 'rejected',
-) {
-  const point = await this.pointModel.findByIdAndUpdate(
-    pointId,
-    { status },
-    { returnDocument: 'after' },
-  );
-
-  if (!point) {
-    throw new NotFoundException('Point not found');
+    return this.pointModel
+      .find({ status: 'pending' })
+      .sort({ createdAt: -1 });
   }
 
-  return point;
-}
+  async changeStatus(pointId: string, status: 'approved' | 'rejected') {
+    const point = await this.pointModel.findByIdAndUpdate(
+      pointId,
+      { status },
+      { returnDocument: 'after' },
+    );
+
+    if (!point) {
+      throw new NotFoundException('Point not found');
+    }
+
+    return point;
+  }
 }

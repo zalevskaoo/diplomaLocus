@@ -14,9 +14,12 @@ export const styles = StyleSheet.create({
   },
 
   content: {
-    flex: 1,
-    backgroundColor: LOCUS_COLORS.background,
-  },
+  flex: 1,
+  backgroundColor: LOCUS_COLORS.background,
+},
+contentMobile: {
+  paddingBottom: 88,
+},
 
   sidebar: {
     width: 220,
@@ -31,11 +34,22 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
   },
 
+  logoImage: {
+    width: 140,
+    height: 140,
+    resizeMode: 'contain',
+    marginBottom: 10,
+  },
+
   logo: {
     color: LOCUS_COLORS.textLight,
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 2,
+  },
+
+  logoSpacer: {
+    height: 32,
   },
 
   menu: {
@@ -64,14 +78,38 @@ export const styles = StyleSheet.create({
     color: LOCUS_COLORS.primary,
   },
 
-  logoImage: {
-    width: 140,
-    height: 140,
-    resizeMode: 'contain',
-    marginBottom: 10,
+  bottomNav: {
+  position: 'absolute',
+  left: 12,
+  right: 12,
+  bottom: 12,
+  backgroundColor: LOCUS_COLORS.primary,
+  borderRadius: LOCUS_RADIUS.lg,
+  padding: 8,
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  ...LOCUS_SHADOW,
+},
+
+  bottomNavItem: {
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 6,
+    borderRadius: LOCUS_RADIUS.md,
+    alignItems: 'center',
   },
 
-  logoSpacer: {
-    height: 32,
+  bottomNavItemActive: {
+    backgroundColor: LOCUS_COLORS.muted,
+  },
+
+  bottomNavText: {
+    color: LOCUS_COLORS.textLight,
+    fontSize: 12,
+    fontWeight: '800',
+  },
+
+  bottomNavTextActive: {
+    color: LOCUS_COLORS.primary,
   },
 });

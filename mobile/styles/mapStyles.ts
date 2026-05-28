@@ -233,4 +233,28 @@ export const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 32,
   },
+mapFallback: {
+  flex: 1,
+  backgroundColor: LOCUS_COLORS.surface,
+  borderRadius: LOCUS_RADIUS.lg,
+  borderWidth: 1,
+  borderColor: LOCUS_COLORS.border,
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: 20,
+},
+
+mapFallbackTitle: {
+  fontSize: 22,
+  fontWeight: '900',
+  color: LOCUS_COLORS.primary,
+  marginBottom: 8,
+},
+
+mapFallbackText: {
+  fontSize: 14,
+  color: LOCUS_COLORS.gray,
+  textAlign: 'center',
+  lineHeight: 20,
+},
 });

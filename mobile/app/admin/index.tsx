@@ -13,7 +13,7 @@ import { getCategoryEmoji } from '@/constants/categories';
 import { useAuth } from '@/context/AuthContext';
 import { profileStyles as styles } from '@/styles/profileStyles';
 
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '@/constants/api';
 
 type Point = {
   _id: string;
@@ -115,7 +115,7 @@ export default function AdminScreen() {
 
         <Pressable
           style={styles.backButton}
-          onPress={() => router.push('/profile' as any)}
+          onPress={() => router.push('/(tabs)/profile' as any)}
         >
           <Text style={styles.backButtonText}>Назад</Text>
         </Pressable>
@@ -169,7 +169,7 @@ export default function AdminScreen() {
 
       <Pressable
         style={styles.backButton}
-        onPress={() => router.push('/profile' as any)}
+        onPress={() => router.push('/(tabs)/profile' as any)}
       >
         <Text style={styles.backButtonText}>Назад до профілю</Text>
       </Pressable>

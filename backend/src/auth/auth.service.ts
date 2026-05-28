@@ -271,7 +271,7 @@ export class AuthService {
               Тепер ви можете увійти в застосунок і насолоджитись хоча б цим в цьому житті
             </p>
 
-            <a href="http://localhost:8090/profile">
+            <a href="http://192.168.0.102:8090/profile">
               Перейти до авторизації
             </a>
           </div>

@@ -11,6 +11,7 @@ import {
   Req,
   UploadedFile,
   UseGuards,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -27,8 +28,8 @@ export class PointsController {
   constructor(private readonly pointsService: PointsService) {}
 
   @Get()
-  findAll() {
-    return this.pointsService.findAll();
+  findAll(@Query('mode') mode?: string) {
+    return this.pointsService.findAll(mode);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -127,7 +128,7 @@ export class PointsController {
       throw new BadRequestException('Image file is required');
     }
 
-    const imageUrl = `http://localhost:3000/uploads/points/${file.filename}`;
+    const imageUrl = `http://192.168.0.102:3000/uploads/points/${file.filename}`;
 
     return this.pointsService.addImage(id, request.user.sub, imageUrl);
   }

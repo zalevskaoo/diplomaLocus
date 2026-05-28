@@ -146,7 +146,7 @@ export default function PointDetailsScreen() {
 
         <Pressable
           style={styles.backButton}
-          onPress={() => router.push('/map' as any)}
+          onPress={() => router.push('/(tabs)/map' as any)}
         >
           <Text style={styles.backButtonText}>Назад до мапи</Text>
         </Pressable>
@@ -323,7 +323,7 @@ export default function PointDetailsScreen() {
 
       <Pressable
         style={styles.backButton}
-        onPress={() => router.push('/map' as any)}
+        onPress={() => router.push('/(tabs)/map' as any)}
       >
         <Text style={styles.backButtonText}>Назад до мапи</Text>
       </Pressable>

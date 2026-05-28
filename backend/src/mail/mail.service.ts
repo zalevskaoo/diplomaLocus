@@ -60,7 +60,7 @@ export class MailService {
   }
 
   async sendEmailVerification(email: string, token: string) {
-    const verificationUrl = `http://localhost:3000/auth/verify-email?token=${token}`;
+    const verificationUrl = `http://192.168.0.102:3000/auth/verify-email?token=${token}`;
 
     await this.transporter.sendMail({
       from: `"LOCUS" <${process.env.MAIL_USER}>`,
@@ -78,7 +78,7 @@ export class MailService {
   }
 
   async sendPasswordReset(email: string, token: string) {
-    const resetUrl = `http://localhost:8090/reset-password?token=${token}`;
+    const resetUrl = `http://192.168.0.102:8090/reset-password?token=${token}`;
 
     await this.transporter.sendMail({
       from: `"LOCUS" <${process.env.MAIL_USER}>`,
